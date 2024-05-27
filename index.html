@@ -95,23 +95,28 @@ if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
     function adjustCanvasSize() {
         var width = window.innerWidth;
         var height = window.innerHeight;
-        var targetWidth, targetHeight;
+        var targetWidth, targetHeight, left, top;
         if (width / height > aspectRatio) {
             targetWidth = height * aspectRatio;
             targetHeight = height;
+            left = (width - targetWidth) / 2;
+            top = 0;
         } else {
             targetWidth = width;
             targetHeight = width / aspectRatio;
+            left = 0;
+            top = (height - targetHeight) / 2;
         }
         canvas.style.width = targetWidth + 'px';
         canvas.style.height = targetHeight + 'px';
-        canvas.style.left = (width - targetWidth) / 2 + 'px';
-        canvas.style.top = (height - targetHeight) / 2 + 'px';
+        canvas.style.left = left + 'px';
+        canvas.style.top = top + 'px';
     }
 
     adjustCanvasSize(); // Set initial size
 
     window.addEventListener('resize', adjustCanvasSize); // Adjust size on resize
+
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
