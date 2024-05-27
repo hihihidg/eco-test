@@ -73,6 +73,7 @@
 if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
     // Locking aspect ratio to 16:10
     function adjustCanvasSize() {
+        var aspectRatio = 16 / 10;
         var width = window.innerWidth;
         var height = window.innerHeight;
         var targetWidth, targetHeight, left, top;
