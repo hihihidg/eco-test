@@ -74,18 +74,17 @@
         // Locking aspect ratio to 16:10
     function adjustCanvasSize() {
         var aspectRatio = 16 / 10;
-        var width = window.innerWidth;
-        var height = window.innerHeight;
-        var targetWidth, targetHeight, left, top, spaceOnTop;
+        var width = window.innerWidth-50;
+        var height = window.innerHeight-50;
+        var targetWidth, targetHeight, left, top;
         
         // Calculate space on top based on aspect ratio
-        spaceOnTop = (height - (width / aspectRatio)) / 2;
         
         if (width / height > aspectRatio) {
             targetWidth = height * aspectRatio;
             targetHeight = height;
             left = (width - targetWidth) / 2;
-            top = spaceOnTop; // Adjust top position to add space
+            top = 0; // Adjust top position to add space
         } else {
             targetWidth = width;
             targetHeight = width / aspectRatio;
