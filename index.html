@@ -95,13 +95,18 @@ if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
     function adjustCanvasSize() {
         var width = window.innerWidth;
         var height = window.innerHeight;
+        var targetWidth, targetHeight;
         if (width / height > aspectRatio) {
-            canvas.style.width = height * aspectRatio + 'px';
-            canvas.style.height = height + 'px';
+            targetWidth = height * aspectRatio;
+            targetHeight = height;
         } else {
-            canvas.style.width = width + 'px';
-            canvas.style.height = width / aspectRatio + 'px';
+            targetWidth = width;
+            targetHeight = width / aspectRatio;
         }
+        canvas.style.width = targetWidth + 'px';
+        canvas.style.height = targetHeight + 'px';
+        canvas.style.left = (width - targetWidth) / 2 + 'px';
+        canvas.style.top = (height - targetHeight) / 2 + 'px';
     }
 
     adjustCanvasSize(); // Set initial size
