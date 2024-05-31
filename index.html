@@ -76,9 +76,10 @@
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
 
-       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Locking aspect ratio to 16:10
-    function adjustCanvasSize() {
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        function adjustCanvasSize() {
         var aspectRatio = 16 / 10;
         var width = window.innerWidth-50;
         var height = window.innerHeight-50;
@@ -105,6 +106,7 @@
     }
 
       adjustCanvasSize(); // Set initial size
+
 
 
       } else {
