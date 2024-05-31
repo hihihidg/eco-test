@@ -76,19 +76,35 @@
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
+       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Locking aspect ratio to 16:10
+    function adjustCanvasSize() {
+        var aspectRatio = 16 / 10;
+        var width = window.innerWidth-50;
+        var height = window.innerHeight-50;
+        var targetWidth, targetHeight, left, top;
+        
+        // Calculate space on top based on aspect ratio
+        
+        if (width / height > aspectRatio) {
+            targetWidth = height * aspectRatio;
+            targetHeight = height;
+            left = (width - targetWidth) / 2;
+            top = 0; // Adjust top position to add space
+        } else {
+            targetWidth = width;
+            targetHeight = width / aspectRatio;
+            left = 0;
+            top = (height - targetHeight) / 2;
+        }
+        
+        canvas.style.width = targetWidth + 'px';
+        canvas.style.height = targetHeight + 'px';
+        canvas.style.left = left + 'px';
+        canvas.style.top = top + 'px';
+    }
 
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        container.className = "unity-mobile";
-        canvas.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
+      adjustCanvasSize(); // Set initial size
 
 
       } else {
